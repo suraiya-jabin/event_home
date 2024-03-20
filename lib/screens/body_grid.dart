@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'join_page.dart';
+import 'join_page_folder/join_page.dart';
 
 class MyGridView extends StatelessWidget {
   final List<Map<String, dynamic>> items;
 
-  const MyGridView({Key? key, required this.items, required int crossAxisCount})
-      : super(key: key);
+  const MyGridView(
+      {super.key, required this.items, required int crossAxisCount});
 
   @override
   Widget build(BuildContext context) {
