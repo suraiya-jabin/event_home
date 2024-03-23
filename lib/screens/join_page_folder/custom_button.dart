@@ -47,7 +47,10 @@ class CustomButton extends StatelessWidget {
                 // height: screenWidth * 0.05,
                 // width: screenWidth * 0.1,
               ),
-              const SizedBox(width: 8),
+              const SizedBox(
+                width: 8,
+                height: 8,
+              ),
               Text(
                 buttonText,
                 style: const TextStyle(

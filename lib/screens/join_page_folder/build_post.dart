@@ -46,7 +46,7 @@ class _BuildPostState extends State<BuildPost> {
           color: Colors.white,
           boxShadow: const [
             BoxShadow(
-              color: Colors.black,
+              color: Color.fromARGB(255, 228, 228, 228),
               blurRadius: 3,
               spreadRadius: 1,
               offset: Offset(0, 2),
@@ -57,7 +57,7 @@ class _BuildPostState extends State<BuildPost> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(4.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -74,7 +74,8 @@ class _BuildPostState extends State<BuildPost> {
                       children: [
                         Text(
                           '${widget.userName} is with ${widget.taggedUserName ?? ''} ${widget.feeling.isNotEmpty ? 'and feeling ${widget.feeling}' : ''}',
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 4),
                         Text(
@@ -113,12 +114,38 @@ class _BuildPostState extends State<BuildPost> {
             const SizedBox(
               height: 8,
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    Icons.thumb_up_alt_rounded,
+                    color: Color.fromARGB(255, 31, 130, 216),
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'Comment',
+                    textAlign: TextAlign.end,
+                  ),
+                  //SizedBox(width: 2),
+                  //Icon(Icons.thumb_up),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Container(
                 height: 1,
-                decoration: const BoxDecoration(color: Colors.grey),
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 211, 211, 211)),
               ),
+            ),
+            const SizedBox(
+              height: 12,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -128,16 +155,16 @@ class _BuildPostState extends State<BuildPost> {
                   Row(
                     children: [
                       Material(
-                        child: InkWell(
+                        child: GestureDetector(
                           onTap: () {
                             setState(() {
                               changeButton = true;
                               newLikesCount++;
                             });
                           },
-                          onSecondaryTap: () {
+                          onTapCancel: () {
                             setState(() {
-                              changeButton = false;
+                              changeButton = true;
                               newLikesCount--;
                             });
                           },
@@ -154,9 +181,9 @@ class _BuildPostState extends State<BuildPost> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          setState(() {
-                            newCommentsCount++;
-                          });
+                          _displayBottomSheet(context);
+
+                          //newCommentsCount++;
                         },
                         child: const Icon(Icons.comment),
                       ),
@@ -169,7 +196,7 @@ class _BuildPostState extends State<BuildPost> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            newSharesCount++;
+                            //newSharesCount++;
                           });
                         },
                         child: const Icon(Icons.share),
@@ -181,25 +208,74 @@ class _BuildPostState extends State<BuildPost> {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Like'),
-                  SizedBox(width: 8),
-                  Text('Comment'),
-                  SizedBox(width: 8),
-                  Text('Share'),
-                ],
-              ),
-            ),
             const SizedBox(
-              height: 10,
-            )
+              height: 16,
+            ),
           ],
         ),
       ),
     );
+  }
+
+  Future _displayBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+        builder: (BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Write a comment',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      maxLines: 3,
+                      minLines: 1,
+                      decoration: const InputDecoration(
+                        hintText: "Write your comment here...",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Cancel'),
+                        ),
+                        const SizedBox(width: 10),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Add your comment submission logic here
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Post'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

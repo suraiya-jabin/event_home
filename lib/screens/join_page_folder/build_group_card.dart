@@ -9,13 +9,13 @@ class BuildGroupCard extends StatelessWidget {
   final List<String> memberImages;
 
   const BuildGroupCard({
-    super.key,
+    Key? key,
     required this.screenWidth,
     required this.title,
     required this.groupType,
     required this.membersCount,
     required this.memberImages,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +64,8 @@ class BuildGroupCard extends StatelessWidget {
                           const SizedBox(width: 8),
                           Text(
                             groupType,
-                            style: TextStyle(
-                              fontSize: screenWidth * 0.03,
+                            style: const TextStyle(
+                              fontSize: 12,
                             ),
                           ),
                           const SizedBox(width: 8),
@@ -77,8 +77,8 @@ class BuildGroupCard extends StatelessWidget {
                           const SizedBox(width: 8),
                           Text(
                             membersCount,
-                            style: TextStyle(
-                              fontSize: screenWidth * 0.03,
+                            style: const TextStyle(
+                              fontSize: 12,
                             ),
                           ),
                         ],
@@ -104,7 +104,7 @@ class BuildGroupCard extends StatelessWidget {
                         children: List.generate(
                           5,
                           (imageIndex) {
-                            double leftPosition = imageIndex * 35.0;
+                            double leftPosition = imageIndex * 25.0;
                             if (imageIndex < memberImages.length) {
                               return Positioned(
                                 left: leftPosition,
@@ -126,39 +126,41 @@ class BuildGroupCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.indigo),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.indigo),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        child: const Text(
+                          'Invite',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    child: const Text(
-                      'Invite',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        color: Colors.white,
+                      const SizedBox(width: 5),
+                      SvgPicture.asset(
+                        'assets/icons/person_drop.svg',
+                        height: 40,
+                        width: 40,
                       ),
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  SvgPicture.asset(
-                    'assets/icons/person_drop.svg',
-                    height: 45,
-                    width: 45,
+                    ],
                   ),
                 ],
               ),
+              const SizedBox(height: 10),
             ],
           ),
         ],

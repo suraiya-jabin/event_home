@@ -79,36 +79,35 @@ class MyGridView extends StatelessWidget {
                         left: screenWidth * 0.05,
                         right: screenWidth * 0.05,
                         child: SizedBox(
-                          width: double.infinity,
-                          height: (screenWidth * 0.075).toDouble(),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => JoinPage()),
-                              );
-                            },
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  Colors.indigoAccent),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                            width: double.infinity,
+                            height: (screenWidth * 0.075).toDouble(),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => JoinPage()),
+                                );
+                              },
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    Colors.indigoAccent),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
                                 ),
                               ),
-                            ),
-                            child: Text(
-                              "Join",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: (screenWidth * 0.04).toDouble(),
-                                color: Colors.white,
+                              child: Text(
+                                "Join",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: (screenWidth * 0.04).toDouble(),
+                                  color: Colors.white,
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
+                            )),
                       ),
                       Positioned(
                         top: screenWidth * 0.18,

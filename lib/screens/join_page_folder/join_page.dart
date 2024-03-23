@@ -1,6 +1,5 @@
 import 'package:event_home/screens/join_page_folder/build_group_card.dart';
 import 'package:event_home/screens/join_page_folder/custom_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'build_post.dart';
@@ -43,7 +42,8 @@ class JoinPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 40,
+        backgroundColor: Colors.white,
+        toolbarHeight: 60,
         actions: [
           IconButton(
             icon: SvgPicture.asset(
@@ -67,103 +67,127 @@ class JoinPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(4),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BuildGroupCard(
-                screenWidth: MediaQuery.of(context).size.width,
-                title: 'Picnic at Rajshahi office',
-                groupType: 'Private Group',
-                membersCount: '27 Members',
-                memberImages: const [
-                  'assets/icons/group.png',
-                  'assets/icons/kMask group.png',
-                  'assets/icons/SMask group.png',
-                  'assets/icons/jahid.png',
-                  'assets/icons/AMask group.png',
-                  'assets/icons/ab.png',
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                    height: 60,
-                    width: 60,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/icons/kMask group.png'),
-                      ),
-                    ),
-                  ),
-                  // BuildCircularImage(
-                  //   imagePath: 'assets/icons/kMask group.png',
-                  //   // 'assets/icons/kMask group.png',
-                  //   // height: 60,
-                  //   // width: 60,
-                  //   // screenWidth: screenWidth,
-                  // ),
-                  // Circular image
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 2.0,
-                            color: Colors.black45,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(40.0),
-                          ),
-                        ),
-                        hintText: 'Write something', // Text input box
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-                width: 4,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: CustomButton(
-                        screenWidth: 150,
-                        buttonText: "Photo",
-                        onPressed: () {},
-                        svgImagePath: 'assets/icons/Image 2.svg',
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    CustomButton(
-                      screenWidth: 150,
-                      buttonText: "Expenditure",
-                      onPressed: () {},
-                      svgImagePath: 'assets/icons/Budget.svg',
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    CustomButton(
-                      screenWidth: 150,
-                      buttonText: "Contribution",
-                      onPressed: () {},
-                      svgImagePath: 'assets/icons/contribute.svg',
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 228, 228, 228),
+                      blurRadius: 3,
+                      spreadRadius: 1,
+                      offset: Offset(0, 2),
                     ),
                   ],
                 ),
+                child: Column(
+                  children: [
+                    BuildGroupCard(
+                      screenWidth: MediaQuery.of(context).size.width,
+                      title: 'Picnic at Rajshahi office',
+                      groupType: 'Private Group',
+                      membersCount: '27 Members',
+                      memberImages: const [
+                        'assets/icons/group.png',
+                        'assets/icons/kMask group.png',
+                        'assets/icons/SMask group.png',
+                        'assets/icons/jahid.png',
+                        'assets/icons/AMask group.png',
+                        'assets/icons/ab.png',
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 60,
+                          width: 60,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/icons/kMask group.png'),
+                            ),
+                          ),
+                        ),
+                        // BuildCircularImage(
+                        //   imagePath: 'assets/icons/kMask group.png',
+                        //   // 'assets/icons/kMask group.png',
+                        //   // height: 60,
+                        //   // width: 60,
+                        //   // screenWidth: screenWidth,
+                        // ),
+                        // Circular image
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: TextFormField(
+                            decoration: const InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 2.0,
+                                  color: Colors.black45,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(40.0),
+                                ),
+                              ),
+                              hintText: 'Write something', // Text input box
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                      width: 4,
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(1.0),
+                            child: CustomButton(
+                              screenWidth: 150,
+                              buttonText: "Photo",
+                              onPressed: () {},
+                              svgImagePath: 'assets/icons/Image 2.svg',
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          CustomButton(
+                            screenWidth: 150,
+                            buttonText: "Expenditure",
+                            onPressed: () {},
+                            svgImagePath: 'assets/icons/Budget.svg',
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          CustomButton(
+                            screenWidth: 150,
+                            buttonText: "Contribution",
+                            onPressed: () {},
+                            svgImagePath: 'assets/icons/contribute.svg',
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 12,
               ),
 
               // Dynamic Post Section
