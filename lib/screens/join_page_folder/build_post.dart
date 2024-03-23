@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class BuildPost extends StatelessWidget {
+class BuildPost extends StatefulWidget {
   const BuildPost({
-    super.key,
+    Key? key,
     required this.userName,
     required this.feeling,
     required this.time,
@@ -13,7 +13,8 @@ class BuildPost extends StatelessWidget {
     required this.commentsCount,
     required this.likesCount,
     required this.sharesCount,
-  });
+  }) : super(key: key);
+
   final String userName;
   final String feeling;
   final String time;
@@ -23,23 +24,32 @@ class BuildPost extends StatelessWidget {
   final String? taggedUserName;
   final int likesCount;
   final int commentsCount;
-  // ignore: prefer_typing_uninitialized_variables
-  final sharesCount;
+  final int sharesCount;
+
+  @override
+  _BuildPostState createState() => _BuildPostState();
+}
+
+class _BuildPostState extends State<BuildPost> {
+  int newLikesCount = 0;
+  int newCommentsCount = 0;
+  int newSharesCount = 0;
+  bool changeButton = false;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 0.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: Colors.white,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black,
               blurRadius: 3,
               spreadRadius: 1,
-              offset: const Offset(0, 2),
+              offset: Offset(0, 2),
             ),
           ],
         ),
@@ -47,14 +57,14 @@ class BuildPost extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(8.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: profileImagePath != null
-                        ? AssetImage(profileImagePath ?? '')
+                    backgroundImage: widget.profileImagePath != null
+                        ? AssetImage(widget.profileImagePath ?? '')
                         : null,
                   ),
                   const SizedBox(width: 8),
@@ -63,13 +73,13 @@ class BuildPost extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '$userName is with ${taggedUserName ?? ''} ${feeling.isNotEmpty ? 'and feeling $feeling' : ''}',
-                          style: TextStyle(fontSize: 16),
+                          '${widget.userName} is with ${widget.taggedUserName ?? ''} ${widget.feeling.isNotEmpty ? 'and feeling ${widget.feeling}' : ''}',
+                          style: const TextStyle(fontSize: 16),
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          time,
-                          style: TextStyle(fontSize: 16),
+                          widget.time,
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
@@ -87,19 +97,29 @@ class BuildPost extends StatelessWidget {
                 ],
               ),
             ),
-            if (text.isNotEmpty)
+            if (widget.text.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(text),
+                child: Text(widget.text),
               ),
-            if (postImagePath != null)
+            if (widget.postImagePath != null)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(postImagePath ?? ''),
+                  child: Image.asset(widget.postImagePath ?? ''),
                 ),
               ),
+            const SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Container(
+                height: 1,
+                decoration: const BoxDecoration(color: Colors.grey),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -107,30 +127,76 @@ class BuildPost extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      Material(
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {
+                              changeButton = true;
+                              newLikesCount++;
+                            });
+                          },
+                          onSecondaryTap: () {
+                            setState(() {
+                              changeButton = false;
+                              newLikesCount--;
+                            });
+                          },
+                          child: changeButton
+                              ? const Icon(Icons.thumb_up)
+                              : const Icon(Icons.thumb_up_outlined),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text('${widget.likesCount + newLikesCount}'),
+                    ],
+                  ),
+                  Row(
+                    children: [
                       GestureDetector(
-                          onTap: () {},
-                          child: const Icon(Icons.thumb_up_outlined)),
+                        onTap: () {
+                          setState(() {
+                            newCommentsCount++;
+                          });
+                        },
+                        child: const Icon(Icons.comment),
+                      ),
                       const SizedBox(width: 8),
-                      Text('$likesCount'),
+                      Text('${widget.commentsCount + newCommentsCount}'),
                     ],
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.comment),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            newSharesCount++;
+                          });
+                        },
+                        child: const Icon(Icons.share),
+                      ),
                       const SizedBox(width: 8),
-                      Text('$commentsCount'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.share),
-                      const SizedBox(width: 8),
-                      Text('$sharesCount'),
+                      Text('${widget.sharesCount + newSharesCount}'),
                     ],
                   ),
                 ],
               ),
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Like'),
+                  SizedBox(width: 8),
+                  Text('Comment'),
+                  SizedBox(width: 8),
+                  Text('Share'),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),

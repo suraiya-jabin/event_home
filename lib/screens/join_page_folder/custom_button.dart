@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
       child: Ink(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          color: Colors.red,
+          color: Colors.white,
           // gradient: const LinearGradient(
           //   colors: [
           //     Color(0x00f2f3f2),
@@ -38,7 +38,7 @@ class CustomButton extends StatelessWidget {
           // ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(12.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -50,7 +50,7 @@ class CustomButton extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 buttonText,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
                   fontWeight: FontWeight.bold,

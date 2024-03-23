@@ -1,9 +1,9 @@
 import 'package:event_home/screens/join_page_folder/build_group_card.dart';
 import 'package:event_home/screens/join_page_folder/custom_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'build_post.dart';
-import 'build_button_row.dart';
 
 class JoinPage extends StatelessWidget {
   JoinPage({super.key});
@@ -41,8 +41,6 @@ class JoinPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 40,
@@ -109,9 +107,9 @@ class JoinPage extends StatelessWidget {
                   // ),
                   // Circular image
                   const SizedBox(width: 16),
-                  const Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
+                  Expanded(
+                    child: TextFormField(
+                      decoration: const InputDecoration(
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             width: 2.0,
@@ -128,29 +126,44 @@ class JoinPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 20),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CustomButton(
-                    screenWidth: 200,
-                    buttonText: "button",
-                    onPressed: () {},
-                    svgImagePath: 'assets/icons/contribute.svg',
-                  ),
-                  CustomButton(
-                    screenWidth: 200,
-                    buttonText: "button",
-                    onPressed: () {},
-                    svgImagePath: '',
-                  ),
-                  CustomButton(
-                    screenWidth: 200,
-                    buttonText: "button",
-                    onPressed: () {},
-                    svgImagePath: '',
-                  ),
-                ],
+              const SizedBox(
+                height: 20,
+                width: 4,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: CustomButton(
+                        screenWidth: 150,
+                        buttonText: "Photo",
+                        onPressed: () {},
+                        svgImagePath: 'assets/icons/Image 2.svg',
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    CustomButton(
+                      screenWidth: 150,
+                      buttonText: "Expenditure",
+                      onPressed: () {},
+                      svgImagePath: 'assets/icons/Budget.svg',
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    CustomButton(
+                      screenWidth: 150,
+                      buttonText: "Contribution",
+                      onPressed: () {},
+                      svgImagePath: 'assets/icons/contribute.svg',
+                    ),
+                  ],
+                ),
               ),
 
               // Dynamic Post Section
