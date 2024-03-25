@@ -3,6 +3,7 @@ import 'package:event_home/screens/join_page_folder/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'build_post.dart';
+import 'custom_drawer.dart';
 
 class JoinPage extends StatelessWidget {
   JoinPage({super.key});
@@ -24,6 +25,7 @@ class JoinPage extends StatelessWidget {
       'text': 'Just graduated from college!',
       'likesCount': 20,
       'commentsCount': 15,
+      'liked': [1, 2, 3, 35, 4],
       'sharesCount': 8,
     },
     {
@@ -61,7 +63,12 @@ class JoinPage extends StatelessWidget {
             icon: SvgPicture.asset(
               'assets/icons/fi-rs-menu-burger.svg',
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CustomDrawer()),
+              );
+            },
           ),
         ],
       ),

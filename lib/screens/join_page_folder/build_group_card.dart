@@ -9,13 +9,13 @@ class BuildGroupCard extends StatelessWidget {
   final List<String> memberImages;
 
   const BuildGroupCard({
-    Key? key,
+    super.key,
     required this.screenWidth,
     required this.title,
     required this.groupType,
     required this.membersCount,
     required this.memberImages,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

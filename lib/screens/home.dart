@@ -1,3 +1,4 @@
+import 'package:event_home/screens/join_page_folder/alert_box.dart';
 import 'package:flutter/material.dart';
 import 'body_grid.dart';
 
@@ -67,19 +68,21 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 80,
               height: 40,
               child: ElevatedButton(
-                // onPressed: () {
-                //   Navigator.push(
-                //     context,
-                //     MaterialPageRoute(builder: (context) => const JoinPage()),
-                //   );
-                // },
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const CustomAlertDialog();
+                    },
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
-                onPressed: () {},
+                // onPressed: () {},
                 child: const FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(

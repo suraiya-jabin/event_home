@@ -114,17 +114,22 @@ class _BuildPostState extends State<BuildPost> {
             const SizedBox(
               height: 8,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.thumb_up_alt_rounded,
-                    color: Color.fromARGB(255, 31, 130, 216),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.thumb_up_alt_rounded,
+                        color: Color.fromARGB(255, 31, 130, 216),
+                      ),
+                      Text('${widget.likesCount + newLikesCount}'),
+                    ],
                   ),
-                  SizedBox(width: 8),
-                  Text(
+                  const SizedBox(width: 8),
+                  const Text(
                     'Comment',
                     textAlign: TextAlign.end,
                   ),
@@ -174,7 +179,6 @@ class _BuildPostState extends State<BuildPost> {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text('${widget.likesCount + newLikesCount}'),
                     ],
                   ),
                   Row(
