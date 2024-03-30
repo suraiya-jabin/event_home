@@ -1,4 +1,4 @@
-import 'package:event_home/screens/join_page_folder/alert_box.dart';
+import 'package:event_home/screens/custom_classes/circular_progres.dart';
 import 'package:flutter/material.dart';
 import 'body_grid.dart';
 
@@ -11,7 +11,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   final List<Map<String, dynamic>> listOfItems = [
     {
       'image': 'assets/office.jpg',
@@ -45,6 +45,24 @@ class _MyHomePageState extends State<MyHomePage> {
     },
   ];
 
+  late AnimationController _controller;
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,12 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 40,
               child: ElevatedButton(
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const CustomAlertDialog();
-                    },
-                  );
+                  setState(() {
+                    _isLoading = true;
+                  });
+                  Future.delayed(Duration(seconds: 10), () {
+                    setState(() {
+                      _isLoading = false;
+                    });
+                  });
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo,
@@ -82,7 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
-                // onPressed: () {},
                 child: const FittedBox(
                   fit: BoxFit.scaleDown,
                   child: Text(
@@ -95,24 +114,30 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            if (constraints.maxWidth > 600) {
-              return MyGridView(
-                items: listOfItems,
-                crossAxisCount: 4,
-              );
-            } else {
-              return MyGridView(
-                items: listOfItems,
-                crossAxisCount: 2,
-              );
-            }
-          },
-        ),
-      ),
+      body: _isLoading
+          ? Center(
+              child: CircularProgress(
+                controller: _controller,
+              ),
+            )
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  if (constraints.maxWidth > 600) {
+                    return MyGridView(
+                      items: listOfItems,
+                      crossAxisCount: 4,
+                    );
+                  } else {
+                    return MyGridView(
+                      items: listOfItems,
+                      crossAxisCount: 2,
+                    );
+                  }
+                },
+              ),
+            ),
     );
   }
 }

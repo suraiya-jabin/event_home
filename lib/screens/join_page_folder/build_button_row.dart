@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'custom_button.dart';
+import '../custom_classes/custom_button.dart';
 
 class BuildButtonRow extends StatelessWidget {
   const BuildButtonRow({

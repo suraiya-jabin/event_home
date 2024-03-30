@@ -1,5 +1,9 @@
+// import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// final Uri _url = Uri.parse('https://flutter.dev');
 
 class BuildGroupCard extends StatelessWidget {
   final double screenWidth;
@@ -130,7 +134,12 @@ class BuildGroupCard extends StatelessWidget {
                   Row(
                     children: [
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          const link = "https://pub.dev/packages/url_launcher";
+
+                          launchUrl(Uri.parse(link),
+                              mode: LaunchMode.inAppWebView);
+                        },
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.indigo),
@@ -168,3 +177,11 @@ class BuildGroupCard extends StatelessWidget {
     );
   }
 }
+
+// Future<void> launchUrl() async {
+//   if (await canLaunchUrl(_url.toString() as Uri)) {
+//     await launchUrl(_url.toString());
+//   } else {
+//     throw 'Could not launch $_url';
+//   }
+// }

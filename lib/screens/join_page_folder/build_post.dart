@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BuildPost extends StatefulWidget {
   const BuildPost({
-    Key? key,
+    super.key,
     required this.userName,
     required this.feeling,
     required this.time,
@@ -13,7 +13,7 @@ class BuildPost extends StatefulWidget {
     required this.commentsCount,
     required this.likesCount,
     required this.sharesCount,
-  }) : super(key: key);
+  });
 
   final String userName;
   final String feeling;
@@ -164,13 +164,7 @@ class _BuildPostState extends State<BuildPost> {
                           onTap: () {
                             setState(() {
                               changeButton = true;
-                              newLikesCount++;
-                            });
-                          },
-                          onTapCancel: () {
-                            setState(() {
-                              changeButton = true;
-                              newLikesCount--;
+                              newLikesCount += changeButton ? 1 : -1;
                             });
                           },
                           child: changeButton

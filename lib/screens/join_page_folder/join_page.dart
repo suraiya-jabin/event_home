@@ -1,9 +1,9 @@
 import 'package:event_home/screens/join_page_folder/build_group_card.dart';
-import 'package:event_home/screens/join_page_folder/custom_button.dart';
+import 'package:event_home/screens/custom_classes/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'build_post.dart';
-import 'custom_drawer.dart';
+import '../custom_classes/custom_drawer.dart';
 
 class JoinPage extends StatelessWidget {
   JoinPage({super.key});
