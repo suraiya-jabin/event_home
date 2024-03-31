@@ -1,4 +1,3 @@
-import 'package:event_home/screens/custom_classes/circular_progres.dart';
 import 'package:flutter/material.dart';
 import 'body_grid.dart';
 
@@ -79,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         centerTitle: true,
         toolbarHeight: 100,
         leading: const Icon(Icons.arrow_back, color: Colors.indigoAccent),
+        // Icon(Icons.sunny)
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   setState(() {
                     _isLoading = true;
                   });
-                  Future.delayed(Duration(seconds: 10), () {
+                  Future.delayed(const Duration(seconds: 5), () {
                     setState(() {
                       _isLoading = false;
                     });
@@ -115,10 +115,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         ],
       ),
       body: _isLoading
-          ? Center(
-              child: CircularProgress(
-                controller: _controller,
-              ),
+          ? const Center(
+              child: CircularProgressIndicator(),
             )
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),

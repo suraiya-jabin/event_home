@@ -40,6 +40,11 @@ dependencies:
   url_launcher: ^6.2.5
   path_provider: ^2.1.2
   webview_flutter: ^4.7.0
+  theme_manager: ^2.0.4
+  stacked_themes: ^0.3.12
+  dio: ^5.4.2+1
+  sqflite: ^2.3.2
+  hexcolor: ^3.0.1
 
 dev_dependencies:
   flutter_test:

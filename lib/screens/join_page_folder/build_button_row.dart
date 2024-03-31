@@ -1,3 +1,4 @@
+import 'package:event_home/screens/custom_classes/slider_app.dart';
 import 'package:flutter/material.dart';
 import '../custom_classes/custom_button.dart';
 
@@ -33,9 +34,13 @@ class BuildButtonRow extends StatelessWidget {
         ),
         CustomButton(
           svgImagePath: 'assets/icons/contribute.svg',
-          buttonText: 'Contribution',
+          buttonText: 'Contributigdfghjon',
           onPressed: () {
-            //
+            print('Push');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SliderNew()),
+            );
           },
           screenWidth: screenWidth,
         ),

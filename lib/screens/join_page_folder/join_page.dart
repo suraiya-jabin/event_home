@@ -1,3 +1,5 @@
+import 'package:event_home/screens/custom_classes/dio_prac.dart';
+import 'package:event_home/screens/custom_classes/slider_app.dart';
 import 'package:event_home/screens/join_page_folder/build_group_card.dart';
 import 'package:event_home/screens/custom_classes/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -162,7 +164,13 @@ class JoinPage extends StatelessWidget {
                             child: CustomButton(
                               screenWidth: 150,
                               buttonText: "Photo",
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const DioPrac()),
+                                );
+                              },
                               svgImagePath: 'assets/icons/Image 2.svg',
                             ),
                           ),
@@ -181,7 +189,14 @@ class JoinPage extends StatelessWidget {
                           CustomButton(
                             screenWidth: 150,
                             buttonText: "Contribution",
-                            onPressed: () {},
+                            onPressed: () {
+                              // const Slider(value: 20, onChanged: 5.0 );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SliderNew()),
+                              );
+                            },
                             svgImagePath: 'assets/icons/contribute.svg',
                           ),
                         ],
